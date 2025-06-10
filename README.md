@@ -86,7 +86,8 @@ Directeur de projet junior en conception et développement de solutions informat
 
 ## Formation
 
-- Bac+5 en Conception et Développement de Solutions Informatiques (diplôme non obtenu).
+- Bac+5 Directeur de projet en conception et développement de solution informatique (diplôme obtenue mention bien)
+- Bac+3 en Conception et Développement de Solutions Informatiques (diplôme non obtenu).
 - Formation RGAA - Accessibilité Web.
 
 ---
