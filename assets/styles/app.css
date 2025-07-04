@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+body {
+    background-color: radial-gradient(circle at 50% 50%, #f0f4f8, #e0e7ee);
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+.card-hover {
+    transition: all 0.3s ease;
+}
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.skill-bar {
+    transition: width 1s ease-in-out;
+}
+.animate-counter {
+    animation: countUp 2s ease-out;
+}
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.handshake-icon {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.handshake-icon:hover {
+    transform: scale(1.1);
+}
+
+.handshake-container svg {
+    width: 200px;
+    height: 150px;
+    transition: all 0.3s ease;
+}
+
+.handshake-container:hover svg {
+    transform: scale(1.05);
+}
+
+/* Pour changer les couleurs dynamiquement */
+.handshake-container svg path {
+    transition: stroke 0.3s ease;
+}
+
+.handshake-container:hover svg path {
+    stroke: #e63946;
+}
+
+.email-protection-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.protection-card {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.reveal-button {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+.reveal-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+}
+.email-display {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 15px;
+    margin-top: 15px;
+    display: none;
+}
+.email-text {
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    color: #495057;
+    font-weight: bold;
+}
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.status-protected { background: #28a745; }
+.status-visible { background: #ffc107; }

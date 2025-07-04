@@ -1,0 +1,148 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1E1E2E;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2D2D44;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E1E2E;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Keyboard gradient -->
+    <linearGradient id="keyboardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4F4F4F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Hand gradients -->
+    <linearGradient id="handGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B9D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8E53;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="handGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B73FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9F7AEA;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Key gradients -->
+    <linearGradient id="keyGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00FFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00BCFF;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="keyGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF00FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF00BC;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="keyGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00FF80;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00FF40;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="keyGradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFF00;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFBC00;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow effects -->
+    <filter id="gellow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/> 
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgGradient)"/>
+
+  <!-- Keyboard base -->
+  <rect x="100" y="350" width="600" height="200" rx="20" fill="url(#keyboardGradient)" stroke="#666666" stroke-width="2"/>
+  
+  <!-- Keys row 1 -->
+  <rect x="130" y="380" width="40" height="40" rx="5" fill="url(#keyGradient1)" filter="url(#gellow)"/>
+  <rect x="180" y="380" width="40" height="40" rx="5" fill="url(#keyGradient2)" filter="url(#gellow)"/>
+  <rect x="230" y="380" width="40" height="40" rx="5" fill="url(#keyGradient3)" filter="url(#gellow)"/>
+  <rect x="280" y="380" width="40" height="40" rx="5" fill="url(#keyGradient4)" filter="url(#gellow)"/>
+  <rect x="330" y="380" width="40" height="40" rx="5" fill="url(#keyGradient1)" filter="url(#gellow)"/>
+  <rect x="380" y="380" width="40" height="40" rx="5" fill="url(#keyGradient2)" filter="url(#gellow)"/>
+  <rect x="430" y="380" width="40" height="40" rx="5" fill="url(#keyGradient3)" filter="url(#gellow)"/>
+  <rect x="480" y="380" width="40" height="40" rx="5" fill="url(#keyGradient4)" filter="url(#gellow)"/>
+  <rect x="530" y="380" width="40" height="40" rx="5" fill="url(#keyGradient1)" filter="url(#gellow)"/>
+  <rect x="580" y="380" width="40" height="40" rx="5" fill="url(#keyGradient2)" filter="url(#gellow)"/>
+  <rect x="630" y="380" width="40" height="40" rx="5" fill="url(#keyGradient3)" filter="url(#gellow)"/>
+
+  <!-- Keys row 2 -->
+  <rect x="150" y="430" width="40" height="40" rx="5" fill="url(#keyGradient4)" filter="url(#gellow)"/>
+  <rect x="200" y="430" width="40" height="40" rx="5" fill="url(#keyGradient1)" filter="url(#gellow)"/>
+  <rect x="250" y="430" width="40" height="40" rx="5" fill="url(#keyGradient2)" filter="url(#gellow)"/>
+  <rect x="300" y="430" width="40" height="40" rx="5" fill="url(#keyGradient3)" filter="url(#gellow)"/>
+  <rect x="350" y="430" width="40" height="40" rx="5" fill="url(#keyGradient4)" filter="url(#gellow)"/>
+  <rect x="400" y="430" width="40" height="40" rx="5" fill="url(#keyGradient1)" filter="url(#gellow)"/>
+  <rect x="450" y="430" width="40" height="40" rx="5" fill="url(#keyGradient2)" filter="url(#gellow)"/>
+  <rect x="500" y="430" width="40" height="40" rx="5" fill="url(#keyGradient3)" filter="url(#gellow)"/>
+  <rect x="550" y="430" width="40" height="40" rx="5" fill="url(#keyGradient4)" filter="url(#gellow)"/>
+  <rect x="600" y="430" width="40" height="40" rx="5" fill="url(#keyGradient1)" filter="url(#gellow)"/>
+
+  <!-- Keys row 3 -->
+  <rect x="170" y="480" width="40" height="40" rx="5" fill="url(#keyGradient2)" filter="url(#gellow)"/>
+  <rect x="220" y="480" width="40" height="40" rx="5" fill="url(#keyGradient3)" filter="url(#gellow)"/>
+  <rect x="270" y="480" width="40" height="40" rx="5" fill="url(#keyGradient4)" filter="url(#gellow)"/>
+  <rect x="320" y="480" width="40" height="40" rx="5" fill="url(#keyGradient1)" filter="url(#gellow)"/>
+  <rect x="370" y="480" width="40" height="40" rx="5" fill="url(#keyGradient2)" filter="url(#gellow)"/>
+  <rect x="420" y="480" width="40" height="40" rx="5" fill="url(#keyGradient3)" filter="url(#gellow)"/>
+  <rect x="470" y="480" width="40" height="40" rx="5" fill="url(#keyGradient4)" filter="url(#gellow)"/>
+  <rect x="520" y="480" width="40" height="40" rx="5" fill="url(#keyGradient1)" filter="url(#gellow)"/>
+  <rect x="570" y="480" width="40" height="40" rx="5" fill="url(#keyGradient2)" filter="url(#gellow)"/>
+
+  <!-- Spacebar -->
+  <rect x="250" y="530" width="300" height="40" rx="20" fill="url(#keyGradient3)" filter="url(#gellow)"/>
+  
+  <!-- Left hand -->
+  <ellipse cx="250" cy="280" rx="80" ry="40" fill="url(#handGradient1)" filter="url(#gellow)"/>
+  <!-- Left fingers -->
+  <ellipse cx="200" cy="320" rx="15" ry="40" fill="url(#handGradient1)" filter="url(#gellow)"/>
+  <ellipse cx="230" cy="330" rx="15" ry="45" fill="url(#handGradient1)" filter="url(#gellow)"/>
+  <ellipse cx="260" cy="330" rx="15" ry="45" fill="url(#handGradient1)" filter="url(#gellow)"/>
+  <ellipse cx="290" cy="325" rx="15" ry="40" fill="url(#handGradient1)" filter="url(#gellow)"/>
+  <!-- Left thumb -->
+  <ellipse cx="320" cy="300" rx="20" ry="30" transform="rotate(45 320 300)" fill="url(#handGradient1)" filter="url(#gellow)"/>
+
+  <!-- Right hand -->
+  <ellipse cx="550" cy="280" rx="80" ry="40" fill="url(#handGradient2)" filter="url(#gellow)"/>
+  <!-- Right fingers -->
+  <ellipse cx="510" cy="325" rx="15" ry="40" fill="url(#handGradient2)" filter="url(#gellow)"/>
+  <ellipse cx="540" cy="330" rx="15" ry="45" fill="url(#handGradient2)" filter="url(#gellow)"/>
+  <ellipse cx="570" cy="330" rx="15" ry="45" fill="url(#handGradient2)" filter="url(#gellow)"/>
+  <ellipse cx="600" cy="320" rx="15" ry="40" fill="url(#handGradient2)" filter="url(#gellow)"/>
+  <!-- Right thumb -->
+  <ellipse cx="480" cy="300" rx="20" ry="30" transform="rotate(-45 480 300)" fill="url(#handGradient2)" filter="url(#gellow)"/>
+
+  <!-- Energy lines -->
+  <path d="M230 360Q250 340 270 360" stroke="#00FFFF" stroke-width="3" fill="none" opacity="0.7"/>
+  <path d="M540 360Q560 340 580 360" stroke="#FF00FF" stroke-width="3" fill="none" opacity="0.7"/>
+
+  <!-- Floating particles -->
+  <circle cx="150" cy="200" r="5" fill="#00FFFF" opacity="0.8">
+    <animate attributeName="cy" values="200;180;200" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="650" cy="250" r="7" fill="#FF00FF" opacity="0.8">
+    <animate attributeName="cy" values="250;230;250" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="70" cy="150" r="4" fill="#00FF80" opacity="0.8">
+    <animate attributeName="cy" values="150;130;150" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="730" cy="180" r="6" fill="#FFFF00" opacity="0.8">
+    <animate attributeName="cy" values="180;160;180" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Code lines effect -->
+  <text x="50" y="100" font-family="monospace" font-size="14" fill="#00FFFF" opacity="0.6">function code() {</text>
+  <text x="70" y="120" font-family="monospace" font-size="14" fill="#FF00FF" opacity="0.6">  return 'Hello World';</text>
+  <text x="50" y="140" font-family="monospace" font-size="14" fill="#00FF80" opacity="0.6">}</text>
+  <text x="550" y="100" font-family="monospace" font-size="14" fill="#FFFF00" opacity="0.6">const app = () => {</text>
+  <text x="570" y="120" font-family="monospace" font-size="14" fill="#FF00BC" opacity="0.6">  console.log('Coding');</text>
+  <text x="550" y="140" font-family="monospace" font-size="14" fill="#00FFFF" opacity="0.6">};</text>
+</svg>

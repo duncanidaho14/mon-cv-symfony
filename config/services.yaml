@@ -18,3 +18,14 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    Domain\:
+        resource: '../Domain/Blog/'
+ 
+    Infrastructure\:
+        resource: '../src/Infrastructure/'
+        exclude:
+            - '../src/Infrastructure/Symfony/Kernel.php'
+            
+    App\UserInterface\Controller\:
+        resource: '../src/UserInterface/Controller/'
+        tags: ['controller.service_arguments']

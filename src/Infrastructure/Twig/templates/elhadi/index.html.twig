@@ -1,0 +1,504 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CV d'Elhadi BEDDAREM{% endblock %}
+
+{% block body %}
+<!-- Hero Section -->
+<section class="gradient-bg text-white py-20">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="text-5xl font-bold mb-6">
+                    Elhadi Beddarem
+                </h1>
+                <h2 class="text-2xl mb-6 text-blue-100">
+                    Directeur de Projet & Architecte SI
+                </h2>
+                <p class="text-xl mb-8 text-blue-50 leading-relaxed">
+                    Spécialisé en PHP/Symfony et Clean Architecture, j'ai généré plus de <strong>3m€ d'économies</strong> 
+                    chez IAD grâce à l'automatisation et l'optimisation des processus.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#achievements" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-300">
+                        Voir mes réalisations
+                    </a>
+                    <a href="#contact" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition duration-300">
+                        Me contacter
+                    </a>
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="relative">
+                    <img src="{{asset('build/images/hands-keyboard-colorful.svg')}}" alt="Elhadi Beddarem" class="rounded-full w-80 h-80 mx-auto object-cover border-8 border-white shadow-2xl">
+                    <div class="absolute -bottom-4 -right-4 bg-green-500 w-16 h-16 rounded-full flex items-center justify-center">
+                        <i class="fas fa-code text-white text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">À propos</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Diplômé Bac+5 avec mention bien, passionné par l'innovation technologique et l'optimisation des processus métier.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <img src="{{asset('build/images/workflow-elhadi.png')}}" alt="Clean Architecture Diagram" class="rounded-lg shadow-lg">
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Mon expertise</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-layer-group text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Clean Architecture & DDD</h4>
+                            <p class="text-gray-600">Conception d'architectures évolutives et maintenables</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-cogs text-green-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Automatisation des processus</h4>
+                            <p class="text-gray-600">Optimisation et digitalisation des workflows métier</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-users text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Leadership technique</h4>
+                            <p class="text-gray-600">Encadrement d'équipes et collaboration transverse</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Achievements Section -->
+<section id="achievements" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Mes réalisations chiffrées</h2>
+            <p class="text-xl text-gray-600">Impact mesurable sur les organisations</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for achievement in achievements %}
+            <div class="bg-white rounded-xl p-8 shadow-lg card-hover text-center">
+                <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                    {% if achievement.icon == 'euro' %}
+                        <i class="fas fa-euro-sign text-white text-2xl"></i>
+                    {% elseif achievement.icon == 'clock' %}
+                        <i class="fas fa-clock text-white text-2xl"></i>
+                    {% elseif achievement.icon == 'users' %}
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    {% elseif achievement.icon == 'bug' %}
+                        <i class="fas fa-bug text-white text-2xl"></i>
+                    {% elseif achievement.icon == 'api' %}
+                        <i class="fas fa-plug text-white text-2xl"></i>
+                    {% elseif achievement.icon == 'zap' %}
+                        <i class="fas fa-bolt text-white text-2xl"></i>
+                    {% endif %}
+                </div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2 counter animate-counter" data-target="{{ achievement.value|replace({'M€': '', '%': '', '+': '', ',': ''}) }}">
+                    {{ achievement.value }}
+                </h3>
+                <h4 class="text-lg font-semibold text-gray-700 mb-2">{{ achievement.title }}</h4>
+                <p class="text-gray-600">{{ achievement.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Projets marquants</h2>
+            <p class="text-xl text-gray-600">Solutions développées avec impact business</p>
+        </div>
+        
+        <div class="space-y-12">
+            {% for project in projects %}
+            <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">{{ project.name }}</h3>
+                        <p class="text-gray-600 mb-6">{{ project.description }}</p>
+                        
+                        <div class="bg-green-100 border-l-4 border-green-500 p-4 mb-6">
+                            <p class="text-green-800 font-semibold">
+                                <i class="fas fa-chart-line mr-2"></i>
+                                {{ project.impact }}
+                            </p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-3">Technologies utilisées:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                {% for tech in project.tech %}
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">{{ tech }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-3">Métriques clés:</h4>
+                            <ul class="space-y-2">
+                                {% for metric in project.metrics %}
+                                <li class="flex items-center text-gray-600">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    {{ metric }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <img src="{{asset(project.image)}}?height=300&width=400" alt="{{ project.name }}" class="rounded-lg shadow-lg mx-auto">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Compétences techniques</h2>
+            <p class="text-xl text-gray-600">Expertise développée au fil des projets</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {% for category, skillList in skills %}
+            <div class="bg-white rounded-xl p-6 shadow-lg">
+                <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">{{ category }}</h3>
+                <div class="space-y-4">
+                    {% for skill, level in skillList %}
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700 font-medium">{{ skill }}</span>
+                            <span class="text-gray-500 text-sm">{{ level }}%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="skill-bar bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full" 
+                                 data-width="{{ level }}" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Experience Timeline -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Parcours professionnel</h2>
+            <p class="text-xl text-gray-600">Évolution et apprentissage continu</p>
+        </div>
+        
+        <div class="relative">
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-200"></div>
+            
+            <div class="space-y-12">
+                <div class="flex items-center">
+                    <div class="w-1/2 pr-8 text-right">
+                        <div class="bg-blue-50 rounded-lg p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">IAD - Développeur Senior</h3>
+                            <p class="text-blue-600 font-semibold mb-2">2022 - 2024</p>
+                            <p class="text-gray-600">Refonte du CRM Playiad, génération de 3m€/an d'économies</p>
+                        </div>
+                    </div>
+                    <div class="w-8 h-8 bg-blue-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                    <div class="w-1/2 pl-8">
+                        <img src="{{asset('build/images/playiad-site-web.png')}}?height=200&width=300" alt="IAD" class="rounded-lg shadow-md">
+                    </div>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="w-1/2 pr-8">
+                        <img src="{{asset('build/images/sas-kalliste-accueil.png')}}?height=200&width=300" alt="Kalliste Project" class="rounded-lg shadow-md">
+                    </div>
+                    <div class="w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                    <div class="w-1/2 pl-8">
+                        <div class="bg-green-50 rounded-lg p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">SAS Kalliste - Développeur</h3>
+                            <p class="text-green-600 font-semibold mb-2">2021 - 2022</p>
+                            <p class="text-gray-600">Développement solution CSE, réduction de 90% du temps de dépouillement</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Education Timeline -->
+<section id="education" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Education & Diplômes</h2>
+            <p class="text-xl text-gray-600">Mon parcours académique et mes certifications.</p>
+        </div>
+        
+        <div class="relative">
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-200"></div>
+            
+            <div class="space-y-12">
+                <div class="flex items-center">
+                    <div class="w-1/2 pr-8 text-right">
+                        <div class="bg-blue-50 rounded-lg p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Master en Informatique</h3>
+                            <p class="text-blue-600 font-semibold mb-2">2022 - 2024</p>
+                            <p class="text-gray-600">CFA INSTA, 75005 Paris.</p>
+                        </div>
+                    </div>
+                    <div class="w-8 h-8 bg-blue-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                    <div class="w-1/2 pl-8">
+                        <img src="{{asset('build/images/cfa-insta.png')}}?height=200&width=300" alt="Alternance avec l'entreprise IAD" class="rounded-lg shadow-md">
+                    </div>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="w-1/2 pr-8">
+                        <img src="{{asset('build/images/mdeuxi-ecole.png')}}?height=200&width=300" alt="Alternance avec l'entreprise Kalliste" class="rounded-lg shadow-md">
+                    </div>
+                    <div class="w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                    <div class="w-1/2 pl-8">
+                        <div class="bg-green-50 rounded-lg p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Licence en informatique</h3>
+                            <p class="text-green-600 font-semibold mb-2">2020 - 2022</p>
+                            <p class="text-gray-600">M2i, 75012 Paris.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Galerie de projets -->
+<section id="gallery" class="py-20 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Galerie de projets</h2>
+            <p class="text-xl text-gray-600">Aperçu visuel de mes réalisations</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {% for ownProjectPerso in ownProjectPersonnel %}
+                {% if ownProjectPerso.image is defined and ownProjectPerso.image %}
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <img src="{{ asset(ownProjectPerso.image) }}" alt="{{ ownProjectPerso.name|default('Projet') }}" class="w-full h-56 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ ownProjectPerso.name|default('Projet') }}</h3>
+                        {% if ownProjectPerso.description %}
+                        <p class="text-gray-600 text-sm">{{ ownProjectPerso.description }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 gradient-bg text-white">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-6">Travaillons ensemble</h2>
+        <p class="text-xl mb-8 text-blue-100">
+            Prêt à générer de la valeur pour votre organisation ? Discutons de vos projets.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-white bg-opacity-10 rounded-lg p-6 email-protection-container">
+                <div class="protection-card">
+                    <h3>Révélation sur Clic</h3>
+                    <div id="reveal-section">
+                    {# Utilisation d'ID au lieu d'onclick #}
+                    <button id="reveal-email-btn" class="reveal-button">
+                        🔓 Révéler l'adresse email
+                    </button>
+                    <div id="email-reveal-display" class="email-display">
+                    <i class="fa-solid fa-envelope text-3xl mb-4 fa-beat-fade" style="color: #B197FC;"></i>
+                        <div class="email-text" id="revealed-email"></div>
+                        <div style="margin-top: 10px;">
+                            <button id="copy-email-btn">📋 Copier</button>
+                            <button id="hide-email-btn">👁️ Masquer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white bg-opacity-10 rounded-lg p-6">
+            <i class="fab fa-linkedin text-3xl mb-4" style="color: #B197FC;"></i>
+            <h3 class="text-xl font-semibold mb-2">LinkedIn</h3>
+            <p class="text-black"><a href="https://www.linkedin.com/in/elhadi-beddarem-892b18138/" alt="github elhadi beddarem" target="_blank">Connectons-nous</a></p>
+        </div>
+        <div class="bg-white bg-opacity-10 rounded-lg p-6">
+            <i class="fab fa-github text-3xl mb-4" style="color: #B197FC;"></i>
+            <h3 class="text-xl font-semibold mb-2">GitHub</h3>
+            <p class="text-black"><a href="https://github.com/duncanidaho14?tab=repositories" alt="github elhadi beddarem" target="_blank">Découvrez mes projets</a></p>
+        </div>
+    </div>
+        
+    <a href="mailto:elhadibeddarem@gmail.com" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition duration-300 inline-block">
+        <i class="fas fa-paper-plane mr-2"></i>
+        Démarrer une collaboration
+    </a>
+    
+</div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        // Configuration
+        const emailConfig = {
+            encoded: '{{ encoded_email|default("Y29udGFjdEBtb25zaXRlLmZy") }}',
+            fragments: {
+                user: '{{ email_user|default("elhadibeddarem") }}',
+                domain: '{{ email_domain|default("gmail") }}',
+                extension: '{{ email_extension|default("com") }}'
+            }
+        };
+
+        // Classe pour gérer la protection email
+        class EmailProtection {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                console.log('Initialisation EmailProtection...');
+                this.bindEvents();
+                // this.generateDynamicEmail();
+            }
+
+            bindEvents() {
+                // Révélation d'email
+                const revealBtn = document.getElementById('reveal-email-btn');
+                if (revealBtn) {
+                    revealBtn.addEventListener('click', () => this.revealEmail());
+                }
+
+                // Masquer email
+                const hideBtn = document.getElementById('hide-email-btn');
+                if (hideBtn) {
+                    hideBtn.addEventListener('click', () => this.hideEmail());
+                }
+
+                // Copier email révélé
+                const copyBtn = document.getElementById('copy-email-btn');
+                if (copyBtn) {
+                    copyBtn.addEventListener('click', () => this.copyEmail('revealed-email'));
+                }
+
+                // Copier email dynamique
+                const copyDynamicBtn = document.getElementById('copy-dynamic-btn');
+                if (copyDynamicBtn) {
+                    copyDynamicBtn.addEventListener('click', () => this.copyEmail('dynamic-email-display'));
+                }
+
+                // Régénérer email
+                const regenerateBtn = document.getElementById('regenerate-btn');
+                if (regenerateBtn) {
+                    regenerateBtn.addEventListener('click', () => this.generateDynamicEmail());
+                }
+            }
+
+            revealEmail() {
+                console.log('Révélation de l\'email...');
+                try {
+                    const decodedEmail = atob(emailConfig.encoded);
+                    document.getElementById('revealed-email').textContent = decodedEmail;
+                    document.getElementById('email-reveal-display').style.display = 'block';
+                    document.getElementById('reveal-email-btn').style.display = 'none';
+                    
+                    console.log('Email révélé avec succès');
+                } catch (error) {
+                    console.error('Erreur décodage:', error);
+                    // Fallback
+                    document.getElementById('revealed-email').textContent = 'elhadibeddarem@gmail.com';
+                    document.getElementById('email-reveal-display').style.display = 'block';
+                    document.getElementById('reveal-email-btn').style.display = 'none';
+                }
+            }
+
+            hideEmail() {
+                document.getElementById('email-reveal-display').style.display = 'none';
+                document.getElementById('reveal-email-btn').style.display = 'inline-block';
+            }
+
+            // generateDynamicEmail() {
+            //     const { user, domain, extension } = emailConfig.fragments;
+            //     const at = String.fromCharCode(64); // @
+            //     const dot = String.fromCharCode(46); // .
+                
+            //     const email = user + at + domain + dot + extension;
+            //     document.getElementById('dynamic-email-display').textContent = email;
+                
+            //     console.log('Email dynamique généré:', email);
+            // }
+
+            copyEmail(elementId) {
+                const text = document.getElementById(elementId).textContent;
+                
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert('Email copié !');
+                    }).catch(() => {
+                        this.fallbackCopy(text);
+                    });
+                } else {
+                    this.fallbackCopy(text);
+                }
+            }
+
+            fallbackCopy(text) {
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.opacity = '0';
+                document.body.appendChild(textArea);
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    alert('Email copié !');
+                } catch (err) {
+                    alert('Erreur de copie');
+                }
+                
+                document.body.removeChild(textArea);
+            }
+        }
+
+        // Initialisation quand le DOM est prêt
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM prêt, création de EmailProtection...');
+            
+                new EmailProtection();
+           
+        });
+    </script>
+{% endblock %}
