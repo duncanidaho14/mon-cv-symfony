@@ -8,6 +8,9 @@ import './bootstrap.js';
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
+import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/free-solid-svg-icons';
+import '@fortawesome/free-regular-svg-icons';
 import icone from './images/hands-keyboard-colorful.svg';
 import playiad from './images/playiad-site-web.png';
 import kalliste from './images/sas-kalliste-accueil.png';

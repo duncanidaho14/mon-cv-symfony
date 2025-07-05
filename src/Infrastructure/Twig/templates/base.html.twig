@@ -3,16 +3,26 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>{% block title %}CV d'Elhadi Beddarem!{% endblock %}</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <meta name="description" content="CV d'Elhadi Beddarem, Directeur de Projet & Architecte SI, passionné par la Clean Architecture et l'innovation technologique.">
+        <meta name="author" content="Elhadi Beddarem">
+        <meta name="keywords" content="Elhadi Beddarem, CV, Directeur de Projet, Architecte SI, Clean Architecture, PHP, Symfony">
+        <meta name="robots" content="index, follow">
+        <meta name="msapplication-TileImage" content="https://elhadi-beddarem.com/images/favicon-144x144.png">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="Elhadi Beddarem CV">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://elhadi-beddarem.com/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://elhadi-beddarem.com/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://elhadi-beddarem.com/images/favicon-16x16.png">
+        <link rel="manifest" href="https://elhadi-beddarem.com/manifest.json">
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <link rel="canonical" href="https://elhadi-beddarem.com/" />
+        <title>{% block title %}CV Directeur de Projets Elhadi Beddarem{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+        
     <style>
         
     </style>
@@ -27,8 +37,8 @@
                         <span class="text-white font-bold text-lg">EB</span>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold text-gray-800">Elhadi Beddarem</h1>
-                        <p class="text-sm text-gray-600">Directeur de Projet & Architecte SI</p>
+                        <h1 class="text-xl font-bold text-gray-800">Directeur de Projet & Architecte SI</h1>
+                        <p class="text-sm text-gray-600">Elhadi Beddarem</p>
                     </div>
                 </div>
                 
@@ -84,7 +94,9 @@
             </div>
         </div>
     </footer>
-
+    {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+    {% endblock %}
     <script>
         // Animation des compteurs
         function animateCounters() {
