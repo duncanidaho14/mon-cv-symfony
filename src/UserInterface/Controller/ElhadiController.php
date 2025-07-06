@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserInterface\Controller;
+namespace RightSide\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,7 +54,7 @@ final class ElhadiController extends AbstractController
             [
                 'name' => 'CRM Playiad (IAD)',
                 'description' => 'Refonte complète du CRM avec automatisation des tâches',
-                'impact' => 'Économie de 3m€/an pour l\'entreprise',
+                'impact' => 'Amélioration de 60% des performances de plus de 20 000 conseillers',
                 'tech' => ['Symfony 5', 'ApiPlatform', 'PostgreSQL', 'Docker', 'AWS'],
                 'metrics' => [
                     'Réduction du temps de traitement: 75%',

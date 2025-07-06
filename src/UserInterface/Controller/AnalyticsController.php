@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserInterface\Controller;
+namespace RightSide\Controller;
 
 use Exception;
 use Google\Client as Google_Client;
@@ -17,7 +17,7 @@ class AnalyticsController extends AbstractController
         $GOOGLE_KEY_API = 'JJx3bfBFRGiKjUCFEsJZqQ';
 
         $client = new Google_Client();
-        $client->setApplicationName('Analytics Reporting');
+        $client->setApplicationName('cv directeur reporting');
         $client->setDeveloperKey($GOOGLE_KEY_API);
         $client->setScopes([
             'https://www.googleapis.com/auth/analytics.readonly',

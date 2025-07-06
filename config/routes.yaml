@@ -1,7 +1,7 @@
 controllers:
     resource:
         path: ../src/UserInterface/Controller/
-        namespace: App\Controller
+        namespace: RightSide\Controller
     type: attribute
 
 
@@ -10,11 +10,11 @@ controllers:
 cv_elhadi:
     path: /
     # the controller value has the format 'controller_class::method_name'
-    controller: App\UserInterface\Controller\ElhadiController
+    controller: RightSide\Controller\ElhadiController
 cv_analytics:
     path: /analytics
     # the controller value has the format 'controller_class::method_name'
-    controller: App\UserInterface\Controller\AnalyticsController
+    controller: RightSide\Controller\AnalyticsController
     # if the action is implemented as the __invoke() method of the
     # controller class, you can skip the '::method_name' part:
     # controller: App\Controller\BlogController
