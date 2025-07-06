@@ -31,6 +31,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $googleClientId = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $googleClientSecret = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $googleRedirectUri = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $googleHostedDomain = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $firstName = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $lastName = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -110,5 +128,77 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials(): void
     {
         // @deprecated, to be removed when upgrading to Symfony 8
+    }
+
+    public function getGoogleClientId(): ?string
+    {
+        return $this->googleClientId;
+    }
+
+    public function setGoogleClientId(string $googleClientId): static
+    {
+        $this->googleClientId = $googleClientId;
+
+        return $this;
+    }
+
+    public function getGoogleClientSecret(): ?string
+    {
+        return $this->googleClientSecret;
+    }
+
+    public function setGoogleClientSecret(string $googleClientSecret): static
+    {
+        $this->googleClientSecret = $googleClientSecret;
+
+        return $this;
+    }
+
+    public function getGoogleRedirectUri(): ?string
+    {
+        return $this->googleRedirectUri;
+    }
+
+    public function setGoogleRedirectUri(string $googleRedirectUri): static
+    {
+        $this->googleRedirectUri = $googleRedirectUri;
+
+        return $this;
+    }
+
+    public function getGoogleHostedDomain(): ?string
+    {
+        return $this->googleHostedDomain;
+    }
+
+    public function setGoogleHostedDomain(?string $googleHostedDomain): static
+    {
+        $this->googleHostedDomain = $googleHostedDomain;
+
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(?string $firstName): static
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(?string $lastName): static
+    {
+        $this->lastName = $lastName;
+
+        return $this;
     }
 }
