@@ -4,7 +4,7 @@ namespace App\UserInterface\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+
 
 final class ElhadiController extends AbstractController
 {
@@ -120,7 +120,7 @@ final class ElhadiController extends AbstractController
         $ownProjectPersonnel = [
             [
                 'name' => 'GeekBook (Projet Personnel)',
-                'description' => 'Achat de livre (cloud).',
+                'description' => 'Achat de livres (cloud).',
                 'image' => 'build/images/geekbook-panier.png'
             ],
             [
@@ -130,7 +130,7 @@ final class ElhadiController extends AbstractController
             ],
             [
                 'name' => 'VLAP (Projet Personnel)',
-                'description' => 'AirBnB clone.',
+                'description' => 'Clone AirBnB.',
                 'image' => 'build/images/vlap.png'
             ]
         ];

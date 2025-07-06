@@ -23,3 +23,6 @@ import cityscoring from './images/cityscoring.png';
 import gaminggeek from './images/gaminggeek.png';
 import vlap from './images/vlap.png';
 import geekbookPanier from './images/geekbook-panier.png';
+import tarteaucitron from '../public/tarteaucitron/tarteaucitron.min.js';
+
+

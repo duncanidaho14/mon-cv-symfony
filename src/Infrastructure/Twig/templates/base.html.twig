@@ -21,150 +21,216 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+    </head>
+    <body class="bg-gray-50">
+        <!-- Navigation -->
+        <nav class="bg-white shadow-lg fixed w-full z-50">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between items-center py-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">EB</span>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold text-gray-800">Directeur de Projet & Architecte SI</h1>
+                            <p class="text-sm text-gray-600">Elhadi Beddarem</p>
+                        </div>
+                    </div>
+                    
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-300">À propos</a>
+                        <a href="#achievements" class="text-gray-700 hover:text-blue-600 transition duration-300">Réalisations</a>
+                        <a href="#projects" class="text-gray-700 hover:text-blue-600 transition duration-300">Projets</a>
+                        <a href="#skills" class="text-gray-700 hover:text-blue-600 transition duration-300">Compétences</a>
+                        <a href="#gallery" class="text-gray-700 hover:text-blue-600 transition duration-300">Projets Perso</a>
+                        <a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
+                    </div>
+                    
+                    <div class="md:hidden">
+                        <button class="text-gray-700 hover:text-blue-600">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
 
-        
-    <style>
-        
-    </style>
-</head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-lg fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-4">
-                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                        <span class="text-white font-bold text-lg">EB</span>
+        <main class="pt-20">
+            {% block body %}{% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-12">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Elhadi Beddarem</h3>
+                        <p class="text-gray-300">Directeur de projet junior passionné par la Clean Architecture et l'innovation technologique.</p>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold text-gray-800">Directeur de Projet & Architecte SI</h1>
-                        <p class="text-sm text-gray-600">Elhadi Beddarem</p>
+                        <h3 class="text-xl font-bold mb-4">Liens rapides</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#about" class="text-gray-300 hover:text-white transition duration-300">À propos</a></li>
+                            <li><a href="#projects" class="text-gray-300 hover:text-white transition duration-300">Projets</a></li>
+                            <li><a href="#skills" class="text-gray-300 hover:text-white transition duration-300">Compétences</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Contact</h3>
+                        <div class="space-y-2">
+                            <p class="text-gray-300"><i class="fas fa-envelope mr-2"></i> elhadibeddarem@gmail.com</p>
+                            <p class="text-gray-300"><i class="fab fa-linkedin mr-2"></i> LinkedIn</p>
+                            <p class="text-gray-300"><i class="fab fa-github mr-2"></i> GitHub</p>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-300">À propos</a>
-                    <a href="#achievements" class="text-gray-700 hover:text-blue-600 transition duration-300">Réalisations</a>
-                    <a href="#projects" class="text-gray-700 hover:text-blue-600 transition duration-300">Projets</a>
-                    <a href="#skills" class="text-gray-700 hover:text-blue-600 transition duration-300">Compétences</a>
-                    <a href="#gallery" class="text-gray-700 hover:text-blue-600 transition duration-300">Projets Perso</a>
-                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
-                </div>
-                
-                <div class="md:hidden">
-                    <button class="text-gray-700 hover:text-blue-600">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
+                <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                    <p class="text-gray-300">&copy; 2025 Elhadi Beddarem. Tous droits réservés.</p>
                 </div>
             </div>
-        </div>
-    </nav>
+        </footer>
+        {% block javascripts %}
+                {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+        <script>
+            // Animation des compteurs
+            function animateCounters() {
+                const counters = document.querySelectorAll('.counter');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const increment = target / 100;
+                    let current = 0;
+                    
+                    const updateCounter = () => {
+                        if (current < target) {
+                            current += increment;
+                            counter.textContent = Math.ceil(current);
+                            setTimeout(updateCounter, 20);
+                        } else {
+                            counter.textContent = target;
+                        }
+                    };
+                    updateCounter();
+                });
+            }
 
-    <main class="pt-20">
-        {% block body %}{% endblock %}
-    </main>
+            // Animation des barres de compétences
+            function animateSkillBars() {
+                const skillBars = document.querySelectorAll('.skill-bar');
+                skillBars.forEach(bar => {
+                    const width = bar.getAttribute('data-width');
+                    setTimeout(() => {
+                        bar.style.width = width + '%';
+                    }, 500);
+                });
+            }
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Elhadi Beddarem</h3>
-                    <p class="text-gray-300">Directeur de projet junior passionné par la Clean Architecture et l'innovation technologique.</p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Liens rapides</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#about" class="text-gray-300 hover:text-white transition duration-300">À propos</a></li>
-                        <li><a href="#projects" class="text-gray-300 hover:text-white transition duration-300">Projets</a></li>
-                        <li><a href="#skills" class="text-gray-300 hover:text-white transition duration-300">Compétences</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Contact</h3>
-                    <div class="space-y-2">
-                        <p class="text-gray-300"><i class="fas fa-envelope mr-2"></i> elhadibeddarem@gmail.com</p>
-                        <p class="text-gray-300"><i class="fab fa-linkedin mr-2"></i> LinkedIn</p>
-                        <p class="text-gray-300"><i class="fab fa-github mr-2"></i> GitHub</p>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <p class="text-gray-300">&copy; 2025 Elhadi Beddarem. Tous droits réservés.</p>
-            </div>
-        </div>
-    </footer>
-    {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-    {% endblock %}
-    <script>
-        // Animation des compteurs
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const increment = target / 100;
-                let current = 0;
-                
-                const updateCounter = () => {
-                    if (current < target) {
-                        current += increment;
-                        counter.textContent = Math.ceil(current);
-                        setTimeout(updateCounter, 20);
-                    } else {
-                        counter.textContent = target;
-                    }
-                };
-                updateCounter();
-            });
-        }
-
-        // Animation des barres de compétences
-        function animateSkillBars() {
-            const skillBars = document.querySelectorAll('.skill-bar');
-            skillBars.forEach(bar => {
-                const width = bar.getAttribute('data-width');
-                setTimeout(() => {
-                    bar.style.width = width + '%';
-                }, 500);
-            });
-        }
-
-        // Déclenchement des animations au scroll
-        var observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (entry.target.id === 'achievements') {
-                        animateCounters();
-                    }
-                    if (entry.target.id === 'skills') {
-                        animateSkillBars();
-                    }
-                }
-            });
-        });
-
-        // Animation pour la section diplômes
-            var educationItems = document.querySelectorAll('.education-item');
-        
-            var observerEducation = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
+            // Déclenchement des animations au scroll
+            var observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('animate');
-                        }, index * 200);
+                        if (entry.target.id === 'achievements') {
+                            animateCounters();
+                        }
+                        if (entry.target.id === 'skills') {
+                            animateSkillBars();
+                        }
                     }
                 });
-            }, { threshold: 0.1 });
-
-            educationItems.forEach(item => {
-                observerEducation.observe(item);
             });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            var sections = document.querySelectorAll('#achievements, #skills');
-            sections.forEach(section => observer.observe(section));
-        });
-    </script>
+            // Animation pour la section diplômes
+                var educationItems = document.querySelectorAll('.education-item');
+            
+                var observerEducation = new IntersectionObserver((entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add('animate');
+                            }, index * 200);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                educationItems.forEach(item => {
+                    observerEducation.observe(item);
+                });
+
+            document.addEventListener('DOMContentLoaded', () => {
+                var sections = document.querySelectorAll('#achievements, #skills');
+                sections.forEach(section => observer.observe(section));
+            });
+        </script>
+        <script src="{{asset('tarteaucitron/tarteaucitron.min.js')}}"></script>
+        <script type="text/javascript">
+            // Tarteaucitron.js configuration
+            document.addEventListener("DOMContentLoaded", (event) => {
+                if (typeof tarteaucitron !== 'undefined') {
+                    tarteaucitron.init({
+                        "privacyUrl": "", /* Url de la politique de confidentialité */
+                        "bodyPosition": "top", /* top place le bandeau de consentement au début du code html, mieux pour l'accessibilité */
+
+                        "hashtag": "#tarteaucitron", /* Hashtag qui permet d'ouvrir le panneau de contrôle  */
+                        "cookieName": "tarteaucitron", /* Nom du cookie (uniquement lettres et chiffres) */
+
+                        "orientation": "middle", /* Position de la bannière (top - bottom - popup - banner) */
+
+                        "groupServices": true, /* Grouper les services par catégorie */
+                        "showDetailsOnClick": true, /* Cliquer pour ouvrir la description */
+                        "serviceDefaultState": "wait", /* Statut par défaut (true - wait - false) */
+                                        
+                        "showAlertSmall": false, /* Afficher la petite bannière en bas à droite */
+                        "cookieslist": false, /* Afficher la liste des cookies via une mini bannière */
+                        "cookieslistEmbed": false, /* Afficher la liste des cookies dans le panneau de contrôle */
+                                        
+                        "closePopup": true, /* Afficher un X pour fermer la bannière */
+
+                        "showIcon": true, /* Afficher un cookie pour ouvrir le panneau */
+                        //"iconSrc": "", /* Optionnel: URL ou image en base64 */
+                        "iconPosition": "BottomRight", /* Position de l'icons: (BottomRight - BottomLeft - TopRight - TopLeft) */
+
+                        "adblocker": false, /* Afficher un message si un Adblocker est détecté */
+                                        
+                        "DenyAllCta" : true, /* Afficher le bouton Tout refuser */
+                        "AcceptAllCta" : true, /* Afficher le bouton Tout accepter */
+                        "highPrivacy": true, /* Attendre le consentement */
+                        "alwaysNeedConsent": false, /* Demander le consentement même pour les services "Privacy by design" */
+                                        
+                        "handleBrowserDNTRequest": false, /* Refuser tout par défaut si Do Not Track est activé sur le navigateur */
+
+                        "removeCredit": false, /* Retirer le lien de crédit vers tarteaucitron.io */
+                        "moreInfoLink": true, /* Afficher le lien En savoir plus */
+
+                        "useExternalCss": false, /* Mode expert : désactiver le chargement des fichiers .css tarteaucitron */
+                        "useExternalJs": false, /* Mode expert : désactiver le chargement des fichiers .js tarteaucitron */
+
+                        //"cookieDomain": ".my-multisite-domaine.fr", /* Optionnel: domaine principal pour partager le consentement avec des sous domaines */
+                                        
+                        "readmoreLink": "", /* Changer le lien En savoir plus par défaut */
+
+                        "mandatory": true, /* Afficher un message pour l'utilisation de cookies obligatoires */
+                        "mandatoryCta": false, /* Afficher un bouton pour les cookies obligatoires (déconseillé) */
+
+                        //"customCloserId": "", /* Optionnel a11y: ID personnalisé pour ouvrir le panel */
+                        
+                        "googleConsentMode": true, /* Activer le Google Consent Mode v2 pour Google ads & GA4 */
+                        "bingConsentMode": true, /* Activer le Bing Consent Mode pour Clarity & Bing Ads */
+                        "softConsentMode": false, /* Soft consent mode (le consentement est requis pour charger les tags) */
+
+                        "dataLayer": false, /* Envoyer un événement dans dataLayer avec le statut des services */
+                        "serverSide": false, /* Server side seulement, les tags ne sont pas chargé côté client */
+                        
+                        "partnersList": true /* Afficher le détail du nombre de partenaires sur la bandeau */
+                    });
+    
+                    tarteaucitron.user.gtagUa = 'G-XYR6QS8JBB';
+                    tarteaucitron.user.gtagCrossdomain = ['127.0.0.1:8000', 'localhost:8000'];
+                    tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */ };
+                    (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
+                }
+            });
+        </script>
+
+        
     </body>
 </html>
