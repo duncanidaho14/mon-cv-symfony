@@ -7,16 +7,18 @@
         <meta name="author" content="Elhadi Beddarem">
         <meta name="keywords" content="Elhadi Beddarem, CV, Directeur de Projet, Architecte SI, Clean Architecture, PHP, Symfony">
         <meta name="robots" content="index, follow">
-        <meta name="msapplication-TileImage" content="https://elhadi-beddarem.com/images/favicon-144x144.png">
+        <meta name="msapplication-TileImage" content="{{asset('build/images/favicon.ico')}}">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <meta name="apple-mobile-web-app-title" content="Elhadi Beddarem CV">
-        <link rel="apple-touch-icon" sizes="180x180" href="https://elhadi-beddarem.com/images/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="https://elhadi-beddarem.com/images/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="https://elhadi-beddarem.com/images/favicon-16x16.png">
+        <link rel="favicon" href="{{asset('build/images/favicon.ico')}}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('build/images/apple-touch-icon.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('build/images/favicon-32x32.png')}}">
+
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('build/images/favicon-16x16.png')}}">
         <link rel="manifest" href="https://elhadi-beddarem.com/manifest.json">
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        <link rel="canonical" href="https://elhadi-beddarem.com/" />
+        <link rel="canonical" href="https://directeurdeprojets.fr/" />
         <title>{% block title %}CV Directeur de Projets Elhadi Beddarem{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -224,9 +226,11 @@
                     });
     
                     tarteaucitron.user.gtagUa = 'G-XYR6QS8JBB';
+                    tarteaucitron.user.googletagmanagerId = 'GTM-PLXTK3ZG';
                     tarteaucitron.user.gtagCrossdomain = ['127.0.0.1:8000', 'localhost:8000'];
                     tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */ };
                     (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
+                    (tarteaucitron.job = tarteaucitron.job || []).push('googletagmanager');
                 }
             });
         </script>

@@ -25,4 +25,10 @@ import vlap from './images/vlap.png';
 import geekbookPanier from './images/geekbook-panier.png';
 import tarteaucitron from '../public/tarteaucitron/tarteaucitron.min.js';
 
-
+//favicon
+import favicon from './images/favicon/favicon.ico';
+import androidChrome192 from './images/favicon/android-chrome-192x192.png';
+import androidChrome512 from './images/favicon/android-chrome-512x512.png';
+import appleTouchIcon from './images/favicon/apple-touch-icon.png';
+import favicon32 from './images/favicon/favicon-32x32.png';
+import favicon16 from './images/favicon/favicon-16x16.png';
