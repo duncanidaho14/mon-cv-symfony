@@ -20,4 +20,4 @@ yarn-error.log
 /phpunit.xml
 /.phpunit.cache/
 ###< phpunit/phpunit ###
-/src/Infrastructure/Data
+/src/Infrastructure/Data/*
