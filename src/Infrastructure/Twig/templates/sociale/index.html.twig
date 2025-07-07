@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion à votre espace{% endblock %}
+
+{% block body %}
+{% set last_username = app.user ? app.user.username : '' %}
+{% set error = app.request.attributes.get('_security.last_error') %}
+
+<h2 class="text-2xl font-bold mb-4">Informations de connexion Google</h2>
+<ul class="mb-6 text-gray-800">
+    <li><strong>Client ID :</strong> {{google_client_id ?? 'Non défini' }}</li>
+    <li><strong>Client Secret :</strong> {{ google_client_secret ? '••••••••••••••••' : 'Non défini' }}</li>
+    <li><strong>Nom de l'API :</strong> {{ google_api_name ?? 'Non défini' }}</li>
+    <li><strong>Chemin du fichier JSON :</strong> {{ google_auth_config ?? 'Non défini' }}</li>
+</ul>
+
+<h3 class="text-xl font-semibold mb-2">Variables d'environnement Symfony</h3>
+<pre class="bg-gray-100 p-4 rounded text-sm">
+<ul>
+    <li><strong>Client ID :</strong> {{ google_client_id ?? 'Non défini' }}</li>
+    <li><strong>Client Secret :</strong> {{ google_client_secret ? '••••••••••••••••' : 'Non défini' }}</li>
+    <li><strong>Nom de l'API :</strong> {{ google_api_name ?? 'Non défini' }}</li>
+    <li><strong>Chemin du fichier JSON :</strong> {{ google_auth_config ?? 'Non défini' }}</li>
+</ul>
+</pre>
+
+{% if app.user %}
+    <div class="mt-6 p-4 bg-green-100 rounded">
+        <strong>Connecté en tant que :</strong> {{ app.user.userIdentifier }}
+    </div>
+{% else %}
+    <div class="mt-6 p-4 bg-yellow-100 rounded">
+        <strong>Non connecté</strong>
+    </div>
+{% endif %}
+
+{% endblock %}
+

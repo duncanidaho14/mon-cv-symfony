@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion à votre espace{% endblock %}
+
+{% block body %}
+{% set last_username = app.user ? app.user.username : '' %}
+{% set error = app.request.attributes.get('_security.last_error') %}
+    <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 to-blue-400 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8 space-y-8">
+        <div class="flex flex-col items-center">
+            <img class="mx-auto h-16 w-auto" src="{{ asset('images/logo.png') }}" alt="Logo" />
+            <h2 class="mt-4 text-center text-3xl font-extrabold text-gray-900">Connexion à votre espace</h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+                Veuillez saisir vos identifiants pour accéder à votre compte.
+            </p>
+        </div>
+        <form class="mt-8 space-y-6" method="post" autocomplete="on">
+            {% if error %}
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            {% if app.user %}
+                <div class="mb-3 text-green-700">
+                    Connecté en tant que <strong>{{ app.user.userIdentifier }}</strong>,
+                    <a href="{{ path('app_logout') }}" class="underline text-blue-600 hover:text-blue-800">Déconnexion</a>
+                </div>
+            {% endif %}
+
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700">Adresse e-mail</label>
+                <input id="username" name="_username" type="email" value="{{ last_username }}" required autofocus
+                    class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    autocomplete="email">
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+                <input id="password" name="_password" type="password" required
+                    class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    autocomplete="current-password">
+            </div>
+            <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+
+            {# Option "Se souvenir de moi" #}
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <input id="_remember_me" name="_remember_me" type="checkbox"
+                        class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                    <label for="_remember_me" class="ml-2 block text-sm text-gray-900">
+                        Se souvenir de moi
+                    </label>
+                </div>
+                <div class="text-sm">
+                    <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                        Mot de passe oublié ?
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit"
+                    class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                    Connexion
+                </button>
+            </div>
+        </form>
+        <div class="mt-6 text-center text-sm text-gray-600">
+            Pas encore de compte ?
+            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Créer un compte</a>
+        </div>
+        <div class="mt-8">
+            <a href="{{ path('google_check') }}"
+               class="w-full flex items-center justify-center gap-2 py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-gray-700 hover:bg-gray-50 transition font-medium">
+                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" class="h-5 w-5">
+                Connexion avec Google
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

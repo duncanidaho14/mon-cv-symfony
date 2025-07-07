@@ -1,0 +1,21 @@
+knpu_oauth2_client:
+    clients:
+        # configure your clients as described here: https://github.com/knpuniversity/oauth2-client-bundle#configuration
+        google:
+            type: google
+            client_id: '%env(GOOGLE_CLIENT_ID)%'
+            client_secret: '%env(GOOGLE_CLIENT_SECRET)%'
+            redirect_route: 'cv_elhadi'
+            redirect_params: { scope: 'email profile' }
+            # if you want to use the "offline" mode, uncomment the following line:
+            # access_type: offline
+            # if you want to use the "prompt" parameter, uncomment the following line:
+            # prompt: 'consent'
+            # if you want to use the "approval_prompt" parameter, uncomment the following line:
+            # approval_prompt: 'force'
+            # if you want to use the "hd" parameter, uncomment the following line:
+            # hd: 'yourdomain.com'
+            # if you want to use the "include_granted_scopes" parameter, uncomment the following line:
+            # include_granted_scopes: true
+            # if you want to use the "login_hint" parameter, uncomment the following line:
+            # login_hint: '"approval_prompt"

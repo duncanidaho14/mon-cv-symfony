@@ -18,3 +18,16 @@ cv_analytics:
     # if the action is implemented as the __invoke() method of the
     # controller class, you can skip the '::method_name' part:
     # controller: App\Controller\BlogController
+
+
+google_connect:
+    path: /connect/google
+    controller: RightSide\Controller\GoogleController
+
+google_check:
+    path: /connect/google/check
+    controller: RightSide\Controller\SocialeController
+
+google_disconnect:
+    path: /disconnect/google
+    controller: RightSide\Controller\GoogleController:logout

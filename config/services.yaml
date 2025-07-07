@@ -19,9 +19,6 @@ services:
             - '../src/Infrastructure/Symfony/Kernel.php'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    Domain\:
-        resource: '../Domain/Blog/'
-        tags: ['domain.service']
             
     RightSide\Controller\:
         resource: '../src/UserInterface/Controller/'
