@@ -20,4 +20,4 @@ yarn-error.log
 /phpunit.xml
 /.phpunit.cache/
 ###< phpunit/phpunit ###
-/src/Infrastructure/Data/*
+/src/Infrastructure/Data/client_secret_64541087361-d3pcqj5eppaadqe2c8dgi9046032t114.apps.googleusercontent.com.json
