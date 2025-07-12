@@ -30,4 +30,12 @@ google_check:
 
 google_disconnect:
     path: /disconnect/google
-    controller: RightSide\Controller\GoogleController:logout
+    controller: RightSide\Controller\GoogleController::logout
+
+cv_register:
+    path: /register
+    controller: RightSide\Controller\RegistrationController::register
+     
+cv_verify_email:
+    path: /verify/email
+    controller: RightSide\Controller\RegistrationController::verifyUserEmail

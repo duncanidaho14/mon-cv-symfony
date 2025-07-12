@@ -23,3 +23,11 @@ services:
     RightSide\Controller\:
         resource: '../src/UserInterface/Controller/'
         tags: ['controller.service_arguments']
+
+    RightSide\Security\LoginFormAuthenticator\:
+        resource: '../src/UserInterface/Security/LoginFormAuthenticator.php'
+        tags: ['monolog.logger']
+    
+    RightSide\Security\RegistrationController\:
+        resource: '../src/UserInterface/Controller/RegistrationController.php'
+        tags: ['monolog.logger']
