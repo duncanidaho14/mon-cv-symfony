@@ -39,3 +39,7 @@ cv_register:
 cv_verify_email:
     path: /verify/email
     controller: RightSide\Controller\RegistrationController::verifyUserEmail
+
+cv_logout:
+    path: /logout
+    controller: RightSide\Controller\SecurityController::logout

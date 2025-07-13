@@ -6,7 +6,9 @@
 <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 to-blue-400 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8 space-y-8">
         <div class="flex flex-col items-center">
-            <img class="mx-auto h-16 w-auto" src="{{ asset('images/logo.png') }}" alt="Logo" />
+            <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <span class="text-white font-bold text-lg">EB</span>
+            </div>
             <h2 class="mt-4 text-center text-3xl font-extrabold text-gray-900">Créer un compte</h2>
             <p class="mt-2 text-center text-sm text-gray-600">
                 Remplissez le formulaire pour vous inscrire.
@@ -36,7 +38,29 @@
                 }) }}
                 {{ form_errors(registrationForm.email) }}
             </div>
+             <div>
+                <label for="registrationForm_firstName" class="block text-sm font-medium text-gray-700">Prénom</label>
+                {{ form_widget(registrationForm.firstName, {
+                    'attr': {
+                        'class': 'appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm',
+                        'autocomplete': 'donne un prénom',
+                        'required': true
+                    }
+                }) }}
+                {{ form_errors(registrationForm.firstName) }}
+            </div>
             <div>
+                <label for="registrationForm_lastName" class="block text-sm font-medium text-gray-700">Nom</label>
+                {{ form_widget(registrationForm.lastName, {
+                    'attr': {
+                        'class': 'appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm',
+                        'autocomplete': 'new-password',
+                        'required': true
+                    }
+                }) }}
+                {{ form_errors(registrationForm.lastName) }}
+            </div>
+             <div>
                 <label for="registrationForm_plainPassword" class="block text-sm font-medium text-gray-700">Mot de passe</label>
                 {{ form_widget(registrationForm.plainPassword, {
                     'attr': {

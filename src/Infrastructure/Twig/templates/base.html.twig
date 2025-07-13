@@ -46,12 +46,18 @@
                         <a href="#skills" class="text-gray-700 hover:text-blue-600 transition duration-300">Compétences</a>
                         <a href="#gallery" class="text-gray-700 hover:text-blue-600 transition duration-300">Projets Perso</a>
                         <a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
+                        {% if not app.user %}
                         <a href="{{ path('google_connect') }}" class="ml-4 px-3 py-1 h-8 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-center gap-1 text-sm transition duration-300">
                             <i class="fas fa-sign-in-alt"></i> Connexion
                         </a>
                         <a href="{{ path('cv_register')}}" class="ml-2 px-3 py-1 h-8 bg-green-600 text-white rounded hover:bg-green-700 flex items-center gap-1 text-sm transition duration-300">
                             <i class="fas fa-user-plus"></i> S'inscrire
                         </a>
+                        {% else %}
+                        <a href="{{ path('cv_logout') }}" class="ml-4 px-3 py-1 h-8 bg-red-600 text-white rounded hover:bg-red-700 flex items-center gap-1 text-sm transition duration-300">
+                            <i class="fas fa-sign-out-alt"></i> Déconnexion
+                        </a>
+                        {% endif %}
                     </div>
                     
                     <div class="md:hidden">
@@ -100,6 +106,7 @@
         {% block javascripts %}
                 {{ encore_entry_script_tags('app') }}
         {% endblock %}
+        <script src="{{asset('tarteaucitron/tarteaucitron.min.js')}}"></script>
         <script>
             // Animation des compteurs
             function animateCounters() {
@@ -169,7 +176,6 @@
                 sections.forEach(section => observer.observe(section));
             });
         </script>
-        <script src="{{asset('tarteaucitron/tarteaucitron.min.js')}}"></script>
         <script type="text/javascript">
             // Tarteaucitron.js configuration
             document.addEventListener("DOMContentLoaded", (event) => {
