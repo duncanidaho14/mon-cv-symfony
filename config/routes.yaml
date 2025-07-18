@@ -9,24 +9,25 @@ controllers:
 
 cv_elhadi:
     path: /
-    # the controller value has the format 'controller_class::method_name'
     controller: RightSide\Controller\ElhadiController
+
 cv_analytics:
     path: /analytics
-    # the controller value has the format 'controller_class::method_name'
     controller: RightSide\Controller\AnalyticsController
-    # if the action is implemented as the __invoke() method of the
-    # controller class, you can skip the '::method_name' part:
-    # controller: App\Controller\BlogController
 
+cv_login:
+    path: /login
+    controller: RightSide\Controller\GoogleController::login
 
 google_connect:
-    path: /connect/google
-    controller: RightSide\Controller\GoogleController
+    path: /connect/{service}
+    controller: RightSide\Controller\GoogleController::connectAction
+    methods: GET
 
 google_check:
-    path: /connect/google/check
-    controller: RightSide\Controller\SocialeController
+    path: /connect/check/{service}
+    controller: RightSide\Controller\GoogleController::connectCheckAction
+    methods: ['GET', 'POST']
 
 google_disconnect:
     path: /disconnect/google
@@ -43,3 +44,11 @@ cv_verify_email:
 cv_logout:
     path: /logout
     controller: RightSide\Controller\SecurityController::logout
+
+login_success:
+    path: /login/success
+    controller: RightSide\Controller\SecurityController::loginSuccess
+
+cv_social_connect:
+    path: /social/connect
+    controller: RightSide\Controller\SocialeController

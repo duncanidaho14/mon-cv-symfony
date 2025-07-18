@@ -16,24 +16,32 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-           
+            # https://symfony.com/doc/current/security.html#using-the-http-basic-authentication
+            form_login:
+                login_path: cv_login
+                enable_csrf: true
+            logout:
+                path: cv_logout
+                # where to redirect after logout
+                target: cv_login
+
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                path: /
+                # by default, the feature is enabled by checking a checkbox in the
+                # login form, uncomment the following line to always enable it.
+                #always_remember_me: true
+        custom_authenticators: 
+            lazy: true
+            provider: app_user_provider
             form_login:
                 login_path: google_connect
                 check_path: google_check
                 enable_csrf: true
             logout:
                 path: google_disconnect
-                # where to redirect after logout
                 target: google_connect
-        custom_authenticators: 
-            lazy: true
-            provider: app_user_provider
-            form_login:
-                login_path: cv_login
-                enable_csrf: true
-            logout:
-                path: cv_logout
-                target: cv_login
 
             remember_me:
                 secret: '%kernel.secret%'
@@ -49,11 +57,15 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+    
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/analytics, roles: ROLE_ADMIN }
+        - { path: ^/analytics, roles: ROLE_USER }
 
 when@test:
     security:

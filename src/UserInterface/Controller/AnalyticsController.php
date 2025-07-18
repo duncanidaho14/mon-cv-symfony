@@ -3,10 +3,11 @@
 namespace RightSide\Controller;
 
 use Exception;
-use Google\Client as Google_Client;
 use Google\Service\Analytics;
+use Google\Client as Google_Client;
 use Google\Service\TagManager\Client;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AnalyticsController extends AbstractController
@@ -66,6 +67,8 @@ class AnalyticsController extends AbstractController
 
         return new Response(json_encode($results));
     }
+    
+    #[IsGranted('ROLE_USER')]
     public function __invoke(): Response 
     {
         try {

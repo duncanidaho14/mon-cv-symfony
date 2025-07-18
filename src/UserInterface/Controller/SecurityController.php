@@ -9,7 +9,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    public function __invoke(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
@@ -23,7 +23,10 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    public function logout(): void
+    public function logout(): Response
     {
+        $this->addFlash('info', 'You have been logged out successfully.');
+        // The logout key on your firewall will handle the logout process
+        throw new \Exception('This should never be reached!');
     }
 }

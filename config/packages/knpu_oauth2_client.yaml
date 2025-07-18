@@ -5,10 +5,12 @@ knpu_oauth2_client:
             type: google
             client_id: '%env(GOOGLE_CLIENT_ID)%'
             client_secret: '%env(GOOGLE_CLIENT_SECRET)%'
-            redirect_route: 'cv_elhadi'
-            redirect_params: { scope: 'email profile' }
+            redirect_route: google_check
+            redirect_params:
+                service: 'google'
+            #redirect_params: { scope: 'userinfo.email' }
             # if you want to use the "offline" mode, uncomment the following line:
-            # access_type: offline
+            #access_type: online
             # if you want to use the "prompt" parameter, uncomment the following line:
             # prompt: 'consent'
             # if you want to use the "approval_prompt" parameter, uncomment the following line:
@@ -19,3 +21,5 @@ knpu_oauth2_client:
             # include_granted_scopes: true
             # if you want to use the "login_hint" parameter, uncomment the following line:
             # login_hint: '"approval_prompt"
+
+        
