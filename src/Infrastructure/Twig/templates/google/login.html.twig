@@ -15,7 +15,7 @@
                 Veuillez saisir vos identifiants pour accéder à votre compte.
             </p>
         </div>
-        <form class="mt-8 space-y-6" method="post" autocomplete="on">
+        <form class="mt-8 space-y-6" method="post" data-turbo="false" autocomplete="on">
             {% if error %}
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                     {{ error.messageKey|trans(error.messageData, 'security') }}
@@ -30,14 +30,14 @@
             {% endif %}
 
             <div>
-                <label for="username" class="block text-sm font-medium text-gray-700">Adresse e-mail</label>
-                <input id="username" name="_username" type="email" value="{{ last_username }}" required autofocus
+                <label for="inputEmail" class="block text-sm font-medium text-gray-700">Adresse e-mail</label>
+                <input id="inputEmail" name="email" type="email" value="{{ last_username }}" required autofocus
                     class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     autocomplete="email">
             </div>
             <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
-                <input id="password" name="_password" type="password" required
+                <label for="inputPassword" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+                <input id="inputPassword" name="password" type="password" required
                     class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     autocomplete="current-password">
             </div>
@@ -60,7 +60,7 @@
             </div>
 
             <div>
-                <button type="submit"
+                <button type="submit" id="login_form" value="Se connecter"  data-callback='onSubmit' data-action='submit'
                     class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
                     Connexion
                 </button>
@@ -71,12 +71,43 @@
             <a href="{{path('cv_register')}}" class="font-medium text-indigo-600 hover:text-indigo-500">Créer un compte</a>
         </div>
         <div class="mt-8">
-            <a href="{{ path('google_connect', {service: 'google'}) }}"
+            {# <a href="{{ path('google_connect', {service: 'google'}) }}"
                class="w-full flex items-center justify-center gap-2 py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-gray-700 hover:bg-gray-50 transition font-medium">
                 <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" class="h-5 w-5">
                 Connexion avec Google
-            </a>
+            </a> #}
+            <div id="g_id_onload"
+     data-client_id="64541087361-d3pcqj5eppaadqe2c8dgi9046032t114.apps.googleusercontent.com"
+     data-context="signup"
+     data-ux_mode="popup"
+     data-login_uri="http://localhost:8000/connect/check/google"
+     data-nonce=""
+     data-itp_support="true">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="pill"
+     data-theme="filled_blue"
+     data-text="signin_with"
+     data-size="large"
+     data-locale="fr"
+     data-logo_alignment="left">
+</div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script>
+  window.onload = function () {
+    google.accounts.id.initialize({
+      client_id: '64541087361-d3pcqj5eppaadqe2c8dgi9046032t114.apps.googleusercontent.com',
+      callback: handleCredentialResponse
+    });
+    google.accounts.id.prompt();
+  };
+</script>
 {% endblock %}

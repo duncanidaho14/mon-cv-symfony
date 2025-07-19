@@ -14,7 +14,9 @@
         "google/apiclient": "^2.18",
         "knpuniversity/oauth2-client-bundle": "^2.18",
         "league/oauth2-google": "^4.0",
+        "symfony/browser-kit": "7.3.*",
         "symfony/console": "7.3.*",
+        "symfony/css-selector": "7.3.*",
         "symfony/dotenv": "7.3.*",
         "symfony/flex": "^2.7.1",
         "symfony/form": "7.3.*",
@@ -46,13 +48,12 @@
         "psr-4": {
             "App\\": "src/Infrastructure/",
             "RightSide\\": "src/UserInterface/",
-            "DoctrineMigrations\\": "src/Infrastructure/Migrations/",
             "Elhadi\\": "domain/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "domain/Blog/Tests/"
+            "Tests\\": "tests/"
         }
     },
     "replace": {

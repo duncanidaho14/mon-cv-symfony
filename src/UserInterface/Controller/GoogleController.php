@@ -8,15 +8,21 @@ use Google\Service\Drive\Drive;
 use League\OAuth2\Client\Provider\Google;
 use League\OAuth2\Client\Grant\RefreshToken;
 use Symfony\Component\HttpFoundation\Request;
-use RightSide\Security\LoginFormAuthenticator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use KnpU\OAuth2ClientBundle\Client\Provider\GoogleClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\RememberMeBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 
 class GoogleController extends AbstractController
 {
@@ -30,9 +36,9 @@ class GoogleController extends AbstractController
 
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if($this->getUser()) {
-            return $this->redirectToRoute('cv_elhadi'); // Redirect to a route after successful login
-        }
+        // if($this->getUser()) {
+        //     return $this->redirectToRoute('cv_elhadi'); // Redirect to a route after successful login
+        // }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -66,7 +72,7 @@ class GoogleController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function connectCheckAction(string $service, Request $request, ClientRegistry $clientRegistry)
     {
-        $this->googleLogin($request, $clientRegistry);
+        
     }
 
     public function googleLogin(Request $request, ClientRegistry $clientRegistry): Response
@@ -376,5 +382,38 @@ class GoogleController extends AbstractController
         return new Response(json_encode($userInfo));
     }
 
-    
+    public function getLoginUrl(Request $request): string
+    {
+        // This method is not needed for the Google login flow
+        // It can be used to get the login URL if needed
+        return $this->generateUrl('google_connect', [], 0);
+    }
+
+    public function authenticate(Request $request): Passport
+    {
+        // This method is not needed for the Google login flow
+        // It can be used to authenticate the user if needed
+        $credentials = $this->fetchAccessToken($this->getClient());
+        $resourceOwner = $this->getResourceOwnerFromCredentials($credentials);
+        $user = $this->getUserFromResourceOwner($resourceOwner, $this->userRepository);
+
+        if (null === $user) {
+            $user = $this->registrationService->register($resourceOwner, $this->userRepository);
+        }
+
+        return new Passport(
+            new UserBadge($user->getEmail()),
+            new PasswordCredentials($request->getPayload()->getString('password')),
+            [
+                new CsrfTokenBadge('authenticate', $request->getPayload()->getString('_csrf_token')),
+                new RememberMeBadge(),
+            ]
+        );
+    }
+
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+    {
+        // Redirect to the homepage or any other route after successful authentication
+        return new RedirectResponse($this->router->generate('cv_elhadi'));
+    }
 }
