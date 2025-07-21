@@ -37,8 +37,9 @@ abstract class AbstractLoginAuthenticator extends OAuth2Authenticator
 
     public function supports(Request $request): ?bool
     {
+        $route = $request->get()->getRequestUri();
         // This method checks if the request is for the login route
-        return 'google_check' === $request->attributes->get('_route') &&
+        return $route === $request->attributes->get('_route') &&
             $request->get('service') === $this->serviceName;
     }
 

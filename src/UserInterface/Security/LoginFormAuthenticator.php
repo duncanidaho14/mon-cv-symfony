@@ -16,9 +16,10 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\SecurityRequestAttributes;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
+class LoginFormAuthenticator extends AbstractLoginAuthenticator
 {
     use TargetPathTrait;
+    protected string $serviceName = 'elhadicv';
 
     public const LOGIN_ROUTE = 'cv_login';
 

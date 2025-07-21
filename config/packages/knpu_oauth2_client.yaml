@@ -10,16 +10,7 @@ knpu_oauth2_client:
                 service: 'google'
             #redirect_params: { scope: 'userinfo.email' }
             # if you want to use the "offline" mode, uncomment the following line:
-            #access_type: online
-            # if you want to use the "prompt" parameter, uncomment the following line:
-            # prompt: 'consent'
-            # if you want to use the "approval_prompt" parameter, uncomment the following line:
-            # approval_prompt: 'force'
-            # if you want to use the "hd" parameter, uncomment the following line:
-            # hd: 'yourdomain.com'
-            # if you want to use the "include_granted_scopes" parameter, uncomment the following line:
-            # include_granted_scopes: true
-            # if you want to use the "login_hint" parameter, uncomment the following line:
-            # login_hint: '"approval_prompt"
+            access_type: "offline"
+            user_fields: [email, password]
 
         

@@ -18,11 +18,12 @@ cv_analytics:
 cv_login:
     path: /login
     controller: RightSide\Controller\GoogleController::login
+    methods: ['GET', 'POST']
 
 google_connect:
     path: /connect/{service}
     controller: RightSide\Controller\GoogleController::connectAction
-    methods: GET
+    methods: ['GET', 'POST']
 
 google_check:
     path: /connect/check/{service}

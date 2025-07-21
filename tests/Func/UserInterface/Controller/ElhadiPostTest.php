@@ -10,10 +10,12 @@ class ElhadiPostTest extends WebTestCase
     {
         parent::setUp();
         // Additional setup if needed
+        
     }
     public function testSomething(): void
     {
         $client = static::createClient();
+        $em = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository('App\Entity\User')->findAll();
         $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();

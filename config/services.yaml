@@ -23,6 +23,10 @@ services:
     RightSide\Controller\:
         resource: '../src/UserInterface/Controller/'
         tags: ['controller.service_arguments']
+    
+    RightSide\Security\LoginFormAuthenticator\:
+        resource: '../src/UserInterface/Security/LoginFormAuthenticator.php'
+        tags: ['monolog.logger']
 
     RightSide\Security\AbstractLoginAuthenticator\:
         resource: '../src/UserInterface/Security/AbstractLoginAuthenticator.php'
@@ -34,10 +38,6 @@ services:
     
     RightSide\Security\OAuthRegistrationService\:
         resource: '../src/UserInterface/Security/OAuthRegistrationService.php'
-        tags: ['monolog.logger']
-    
-    RightSide\Security\LoginFormAuthenticator\:
-        resource: '../src/UserInterface/Security/LoginFormAuthenticator.php'
         tags: ['monolog.logger']
     
     RightSide\Controller\RegistrationController\:
