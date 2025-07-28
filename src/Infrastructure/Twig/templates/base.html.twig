@@ -14,7 +14,7 @@
         <link rel="favicon" href="{{asset('build/images/favicon.ico')}}">
         <link rel="apple-touch-icon" sizes="180x180" href="{{asset('build/images/apple-touch-icon.png')}}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{asset('build/images/favicon-32x32.png')}}">
-
+        <meta name="google-signin-client_id" content="64541087361-d3pcqj5eppaadqe2c8dgi9046032t114.apps.googleusercontent.com">
         <link rel="icon" type="image/png" sizes="16x16" href="{{asset('build/images/favicon-16x16.png')}}">
         <link rel="manifest" href="https://elhadi-beddarem.com/manifest.json">
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
@@ -31,21 +31,22 @@
                 <div class="flex justify-between items-center py-4">
                     <div class="flex items-center space-x-4">
                         <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                            <span class="text-white font-bold text-lg">EB</span>
+                            <a href="path('cv_elhadi')" alt="accueil"><span class="text-white font-bold text-lg">EB</span></a>
                         </div>
                         <div>
-                            <h1 class="text-xl font-bold text-gray-800">Directeur de Projet & Architecte SI</h1>
+                            <h1 class="text-xl font-bold text-gray-800"><a href="path('cv_elhadi')" alt="accueil">Directeur de Projet & Architecte SI</a></h1>
                             <p class="text-sm text-gray-600">Elhadi Beddarem</p>
                         </div>
                     </div>
-                    
-                    <div class="hidden md:flex space-x-4 items-center">
-                        <a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-300">À propos</a>
-                        <a href="#achievements" class="text-gray-700 hover:text-blue-600 transition duration-300">Réalisations</a>
-                        <a href="#projects" class="text-gray-700 hover:text-blue-600 transition duration-300">Projets</a>
-                        <a href="#skills" class="text-gray-700 hover:text-blue-600 transition duration-300">Compétences</a>
-                        <a href="#gallery" class="text-gray-700 hover:text-blue-600 transition duration-300">Projets Perso</a>
-                        <a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
+                    <!-- Navigation Links -->                        
+                        <div class="hidden md:flex space-x-4 items-center">
+                            <a href="{{path('cv_elhadi')}}#about" class="text-gray-700 hover:text-blue-600 transition duration-300">À propos</a>
+                            <a href="{{path('cv_elhadi')}}#achievements" class="text-gray-700 hover:text-blue-600 transition duration-300">Réalisations</a>
+                            <a href="{{path('cv_elhadi')}}#projects" class="text-gray-700 hover:text-blue-600 transition duration-300">Projets</a>
+                            <a href="{{path('cv_elhadi')}}#skills" class="text-gray-700 hover:text-blue-600 transition duration-300">Compétences</a>
+                            <a href="{{path('cv_elhadi')}}#gallery" class="text-gray-700 hover:text-blue-600 transition duration-300">Projets Perso</a>
+                            <a href="{{path('cv_elhadi')}}#contact" class="text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
+                        </div>  
                         {% if not app.user %}
                         <a href="{{ path('cv_login') }}" class="ml-4 px-3 py-1 h-8 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-center gap-1 text-sm transition duration-300">
                             <i class="fas fa-sign-in-alt"></i> Connexion

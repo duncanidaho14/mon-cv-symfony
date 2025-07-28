@@ -2,6 +2,7 @@
 
 namespace RightSide\Security;
 
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\RememberMeBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 
 abstract class AbstractLoginAuthenticator extends OAuth2Authenticator
@@ -37,9 +39,32 @@ abstract class AbstractLoginAuthenticator extends OAuth2Authenticator
 
     public function supports(Request $request): ?bool
     {
-        $route = $request->get()->getRequestUri();
+        // Check if the request is for the Google login route
+        // This is done by checking the request URI and the service name
+        if (!$request->isMethod('GET') && !$request->isMethod('POST')) {
+            return false;
+        } elseif (!$request->attributes->has('_route')) {
+            return false;
+        }
+        // Get the request URI to check if it matches the login route
+        // This is necessary to ensure that the authenticator only processes requests for the login route
+        if (!$request->get()->has('service')) {
+            return false;
+        }
+        // Get the request URI to check if it matches the login route
+        // This is necessary to ensure that the authenticator only processes requests for the login route
+        $requestUri = $request->getRequestUri();
+        // if login form, authenticator should not be used
+        if (str_contains($requestUri, 'cv_login')) {
+            return 'cv_login' === $request->attributes->get('_route') &&
+                'google' === $request->get('service');
+        } else {
+            return 'google_check' === $request->attributes->get('_route') &&
+            $request->get('service') === $this->serviceName;
+        }
+
         // This method checks if the request is for the login route
-        return $route === $request->attributes->get('_route') &&
+        return 'google_check' === $request->attributes->get('_route') &&
             $request->get('service') === $this->serviceName;
     }
 
@@ -72,14 +97,41 @@ abstract class AbstractLoginAuthenticator extends OAuth2Authenticator
            $user = $this->registrationService->register($resourceOwner, $this->userRepository);
         }
 
-        return new Passport(
-            new UserBadge($email),
-            new PasswordCredentials($request->getPayload()->getString('password')),
-            [
-                new CsrfTokenBadge('authenticate', $request->getPayload()->getString('_csrf_token')),
-                new RememberMeBadge(),
-            ]
+        return new SelfValidatingPassport(
+            new UserBadge($accessToken->getToken(), function() use ($accessToken, $client) {
+                /** @var GoogleUser $googleUser */
+                $googleUser = $client->fetchUserFromToken($accessToken);
+                
+                $email = $googleUser->getEmail();
+                
+                // 1) Recherche de l'utilisateur existant
+                $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
+                
+                // 2) Création si inexistant
+                if (!$user) {
+                    $user = new User();
+                    $user->setEmail($email);
+                    $user->setRoles(['ROLE_USER']);
+                }
+                
+                // Mise à jour des données Google
+                $user->setGoogleClientId($googleUser->getId());
+                $user->setGoogleClientSecret($googleUser->getAvatar());
+                
+                $this->entityManager->persist($user);
+                $this->entityManager->flush();
+                
+                return $user;
+            })
         );
+        // return new Passport(
+        //     new UserBadge($email),
+        //     new PasswordCredentials($request->getPayload()->getString('password')),
+        //     [
+        //         new CsrfTokenBadge('authenticate', $request->getPayload()->getString('_csrf_token')),
+        //         new RememberMeBadge(),
+        //     ]
+        // );
     }
 
     protected function getResourceOwnerFromCredentials(AccessToken $credentials): UserInterface
