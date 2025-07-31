@@ -92,7 +92,12 @@ class GoogleController extends AbstractController
         return static::supports($request);
     }
 
-    
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+    {
+        static::onAuthicationSuccess($request, $token, $firewallName);
+        return new RedirectResponse($this->generateUrl('cv_analytics'));
+    }
+
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
         return static::onAuthenticationFailure($request, $exception);

@@ -78,14 +78,14 @@
             </a> #}
             <div id="g_id_onload"
                 data-client_id="64541087361-d3pcqj5eppaadqe2c8dgi9046032t114.apps.googleusercontent.com"
-                data-context="signup"
+                data-context="signin"
                 data-ux_mode="popup"
                 data-login_uri="http://localhost:8000/connect/check/google"
                 data-nonce=""
                 data-itp_support="true">
             </div>
 
-            <div class="g_id_signup"
+            <div class="g_id_signin"
                 data-type="standard"
                 data-shape="pill"
                 data-theme="filled_blue"
@@ -111,70 +111,98 @@
             client_id: "64541087361-d3pcqj5eppaadqe2c8dgi9046032t114.apps.googleusercontent.com",
             callback: handleCredentialResponse
         });
-        function handleCredentialResponse(response) {
-            console.log("Encoded JWT ID token: " + response.credential);
-            console.log("Encoded JWT ID token: " + response.credential);
-
-            const responsePayload = decodeJWT(response.credential);
-
-            console.log("Decoded JWT ID token fields:");
-            console.log("  Full Name: " + responsePayload.name);
-            console.log("  Given Name: " + responsePayload.given_name);
-            console.log("  Family Name: " + responsePayload.family_name);
-            console.log("  Unique ID: " + responsePayload.sub);
-            console.log("  Profile image URL: " + responsePayload.picture);
-            console.log("  Email: " + responsePayload.email);
-            // You can send the token to your server for verification and login
-            fetch('/connect/check/google', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': '/',
-                    'X-CSRF-Token': document.querySelector('input[name="_csrf_token"]').value
-                },
-                body: JSON.stringify({ credential: response.credential })
-            });
+        google.accounts.id.prompt();
+        handleCredentialResponse = function(response) {
+        if (response.credential) {
+            // Send the ID token to your server for verification and login
+            const idToken = response.credential;
+            const form = document.getElementById('login_form');
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'id_token';
+            input.value = idToken;
+            form.appendChild(input);
+            // connect user with google
+            console.log("ID Token: " + idToken);
+            
+            form.submit();
+        } else {
+            console.error('No ID token received');
         }
+        };
+        // function handleCredentialResponse(response) {
+        //     console.log("Encoded JWT ID token: " + response.credential);
+        //     console.log("Encoded JWT ID token: " + response.credential);
 
-        function decodeJWT(token) {
-            if (!token) {
-                throw new Error("No token provided");
-            }
-            // Decode the JWT token
-        let base64Url = token.split(".")[1];
-        let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-        let jsonPayload = decodeURIComponent(
-          atob(base64)
-            .split("")
-            .map(function (c) {
-              return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-            })
-            .join("")
-        );
-        return JSON.parse(jsonPayload);
-      }
+        //     const responsePayload = decodeJWT(response.credential);
+
+        //     console.log("Decoded JWT ID token fields:");
+        //     console.log("  Full Name: " + responsePayload.name);
+        //     console.log("  Given Name: " + responsePayload.given_name);
+        //     console.log("  Family Name: " + responsePayload.family_name);
+        //     console.log("  Unique ID: " + responsePayload.sub);
+        //     console.log("  Profile image URL: " + responsePayload.picture);
+        //     console.log("  Email: " + responsePayload.email);
+            // You can send the token to your server for verification and login
+        //     fetch('/connect/check/google', {
+        //         method: 'POST',
+        //         headers: {
+                    
+        //             'Content-Type': 'application/json',
+        //             'X-CSRF-Token': document.querySelector('input[name="_csrf_token"]').value
+        //         },
+        //         body: JSON.stringify({ credential: response.credential })
+        //     });
+        //     console.log("  Email: " + responsePayload.email);
+        //     $user = {
+        //         email: responsePayload.email,
+        //         firstName: responsePayload.given_name,
+        //         lastName: responsePayload.family_name,
+        //         picture: responsePayload.picture
+        //     };
+        //     // You can register the user or log them in with the received data
+        //     console.log("User data:", $user);
+        // }
+
+    //     function decodeJWT(token) {
+    //         if (!token) {
+    //             throw new Error("No token provided");
+    //         }
+    //         // Decode the JWT token
+    //     let base64Url = token.split(".")[1];
+    //     let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    //     let jsonPayload = decodeURIComponent(
+    //       atob(base64)
+    //         .split("")
+    //         .map(function (c) {
+    //           return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+    //         })
+    //         .join("")
+    //     );
+    //     return JSON.parse(jsonPayload);
+    //   }
 
       
-        google.accounts.id.renderButton(
-            document.getElementById("buttonDiv"),
-            { theme: "outline", size: "large" }  // customization attributes
-        );
-        google.accounts.id.prompt();
+        // google.accounts.id.renderButton(
+        //     document.getElementById("buttonDiv"),
+        //     { theme: "outline", size: "large" }  // customization attributes
+        // );
+        // google.accounts.id.prompt();
         
-        function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        } 
+        // function onSignIn(googleUser) {
+        //     var profile = googleUser.getBasicProfile();
+        //     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        //     console.log('Name: ' + profile.getName());
+        //     console.log('Image URL: ' + profile.getImageUrl());
+        //     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        // } 
 
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-            console.log('User signed out.');
-            });
-        }
+        // function signOut() {
+        //     var auth2 = gapi.auth2.getAuthInstance();
+        //     auth2.signOut().then(function () {
+        //     console.log('User signed out.');
+        //     });
+        // }
     };
 </script> 
 {% endblock %}
